@@ -7,26 +7,53 @@ void main() {
   runApp(const StudentTrack());
 }
 
-class StudentTrack extends StatelessWidget {
+class StudentTrack extends StatefulWidget {
   const StudentTrack({super.key});
+
+  @override
+  State<StudentTrack> createState() => _StudentTrackState();
+}
+
+class _StudentTrackState extends State<StudentTrack> {
+  bool _isDarkMode = false;
+
+  void _toggleDarkMode(bool val) {
+    setState(() {
+      _isDarkMode = val;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'student tracker',
-      home: MainContainer(),
+      home: MainContainer(isDarkMode: _isDarkMode, onToggle: _toggleDarkMode),
       theme: ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.light,
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1976D2)),
         // primarySwatch: Colors.green,
         scaffoldBackgroundColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
+      themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.dark,
+        primaryColor: const Color(0xFF1976D2),
+      ),
     );
   }
 }
 
 class MainContainer extends StatefulWidget {
-  const MainContainer({super.key});
+  final bool isDarkMode;
+  final Function(bool) onToggle;
+  const MainContainer({
+    super.key,
+    required this.isDarkMode,
+    required this.onToggle,
+  });
 
   @override
   State<MainContainer> createState() => _MainContainerState();
@@ -35,10 +62,13 @@ class MainContainer extends StatefulWidget {
 class _MainContainerState extends State<MainContainer> {
   int _currentIndex = 0;
 
-  final screens = [HomeScreen(), TaskScreen(), SettingsScreen()];
-
   @override
   Widget build(BuildContext context) {
+    final screens = [
+      HomeScreen(),
+      TaskScreen(),
+      SettingsScreen(isDarkMode: widget.isDarkMode, onToggle: widget.onToggle),
+    ];
     return Scaffold(
       appBar: AppBar(
         title: Text(
