@@ -26,7 +26,7 @@ class _TaskScreenState extends State<TaskScreen> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Container(
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
               child: ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
