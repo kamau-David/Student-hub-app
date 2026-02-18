@@ -16,12 +16,9 @@ class StudentTrack extends StatelessWidget {
       title: 'student tracker',
       home: MainContainer(),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1976D2)),
         // primarySwatch: Colors.green,
         scaffoldBackgroundColor: Colors.white,
-        textTheme: TextTheme(
-          bodyLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
       ),
       debugShowCheckedModeBanner: false,
     );
@@ -43,6 +40,15 @@ class _MainContainerState extends State<MainContainer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          ['Student Hub', 'Tasks', 'Settings'][_currentIndex],
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        leading: Icon(Icons.menu, color: Colors.white),
+        centerTitle: true,
+        backgroundColor: const Color(0xFF1976D2),
+      ),
       body: screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
