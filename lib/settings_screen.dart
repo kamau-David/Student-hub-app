@@ -5,6 +5,28 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('settings')));
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          SwitchListTile(
+            title: const Text("Dark Mode"),
+            value: false,
+            onChanged: (v) {},
+          ),
+          SwitchListTile(
+            title: const Text("Notifications"),
+            value: true,
+            onChanged: (v) {},
+          ),
+          ListTile(
+            title: const Text("Study Reminder Time"),
+            subtitle: const Text("30 Minutes"),
+            trailing: const Icon(Icons.arrow_drop_down),
+            onTap: () {},
+          ),
+        ],
+      ),
+    );
   }
 }
