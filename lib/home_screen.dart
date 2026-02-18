@@ -6,22 +6,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF1976D2),
-        elevation: 0,
-        leading: const Icon(Icons.menu, color: Colors.white),
-        title: const Text(
-          "Student Hub",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_none, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],
-      ),
       backgroundColor: const Color(0xFFF5F7FA),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
